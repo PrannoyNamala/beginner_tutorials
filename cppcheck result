@@ -1,0 +1,8 @@
+COMMAND : cppcheck --enable=all --std=c++11 --check-config --inline-suppr talker.cpp listener.cpp
+
+
+Checking listener.cpp ...
+1/2 files checked 44% done
+Checking talker.cpp ...
+2/2 files checked 100% done
+
