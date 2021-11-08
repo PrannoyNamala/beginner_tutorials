@@ -78,7 +78,7 @@ int main(int argc, char **argv) {
 
   int rate{};
   std::cout<<"Enter rate"<<std::endl;
-  std::cin>>rate;
+  std::cin >> rate;
   if (rate <= 0) {
     ROS_FATAL_STREAM("No publisher rate given. Setting default");
     rate =10;
