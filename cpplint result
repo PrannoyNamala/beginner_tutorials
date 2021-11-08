@@ -1,4 +1,12 @@
-Command : cpplint talker.cpp listener.cpp
+Command : cpplint talker.cpp listener.cpp add_two_ints_server.cpp add_two_ints_client.cpp
 
+
+Done processing add_two_ints_client.cpp
+add_two_ints_server.cpp:22:  Is this a non-const reference? If so, make const or use a pointer: beginner_tutorials::AddTwoInts::Request  &req  [runtime/references] [2]
+add_two_ints_server.cpp:23:  Is this a non-const reference? If so, make const or use a pointer: beginner_tutorials::AddTwoInts::Response &res  [runtime/references] [2]
+Done processing add_two_ints_server.cpp
 Done processing listener.cpp
+talker.cpp:28:  Is this a non-const reference? If so, make const or use a pointer: beginner_tutorials::ConcatStrings::Request  &req  [runtime/references] [2]
+talker.cpp:29:  Is this a non-const reference? If so, make const or use a pointer: beginner_tutorials::ConcatStrings::Response &res  [runtime/references] [2]
 Done processing talker.cpp
+Total errors found: 4
