@@ -5,7 +5,7 @@
  * @version 0.1
  * @date 10-31-2021
  *
- * Copyright (c) 2021 Group 808X-MT14
+ * Copyright (c) 2021
  *
  * Licensed under the MIT License (the "License")
  *
@@ -25,7 +25,7 @@ void chatterCallback(const std_msgs::String::ConstPtr& msg) {
 
 int main(int argc, char **argv) {
   /**
-   * The ros::init() function needs to see argc and argv so that it can perform
+   * @detail The ros::init() function needs to see argc and argv so that it can perform
    * any ROS arguments and name remapping that were provided at the command line.
    * For programmatic remappings you can use a different version of init() which takes
    * remappings directly, but for most command-line programs, passing argc and argv is
@@ -37,14 +37,14 @@ int main(int argc, char **argv) {
   ros::init(argc, argv, "listener");
 
   /**
-   * NodeHandle is the main access point to communications with the ROS system.
+   * @detail NodeHandle is the main access point to communications with the ROS system.
    * The first NodeHandle constructed will fully initialize this node, and the last
    * NodeHandle destructed will close down the node.
    */
   ros::NodeHandle n;
 
   /**
-   * The subscribe() call is how you tell ROS that you want to receive messages
+   * @detail The subscribe() call is how you tell ROS that you want to receive messages
    * on a given topic.  This invokes a call to the ROS
    * master node, which keeps a registry of who is publishing and who
    * is subscribing.  Messages are passed to a callback function, here
@@ -61,7 +61,7 @@ int main(int argc, char **argv) {
   ros::Subscriber sub = n.subscribe("chatter", 1000, chatterCallback);
 
   /**
-   * ros::spin() will enter a loop, pumping callbacks.  With this version, all
+   * @detail ros::spin() will enter a loop, pumping callbacks.  With this version, all
    * callbacks will be called from within this thread (the main one).  ros::spin()
    * will exit when Ctrl-C is pressed, or the node is shutdown by the master.
    */

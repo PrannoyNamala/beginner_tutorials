@@ -5,7 +5,7 @@
  * @version 0.1
  * @date 10-31-2021
  *
- * Copyright (c) 2021 Group 808X-MT14
+ * Copyright (c) 2021
  *
  * Licensed under the MIT License (the "License")
  *
@@ -20,8 +20,14 @@
 // cppcheck-suppress missingInclude
 #include "beginner_tutorials/ConcatStrings.h"
 
-bool concatString(beginner_tutorials::ConcatStrings::Request  &req, beginner_tutorials::ConcatStrings::Response &res) {
-  if (req.aStr.empty() or req.bStr.empty()) {
+
+/**
+ * 
+ * @brief A rosservice that takes two strings and contatenates them
+ */
+bool concatString(beginner_tutorials::ConcatStrings::Request  &req,
+               beginner_tutorials::ConcatStrings::Response &res) {
+  if (req.aStr.empty() || req.bStr.empty()) {
     ROS_ERROR_STREAM("Missing input strings");
     return false;
   }
@@ -33,11 +39,11 @@ bool concatString(beginner_tutorials::ConcatStrings::Request  &req, beginner_tut
 }
 
 /**
- * This tutorial demonstrates simple sending of messages over the ROS system.
+ * @brief This tutorial demonstrates simple sending of messages over the ROS system.
  */
 int main(int argc, char **argv) {
   /**
-   * The ros::init() function needs to see argc and argv so that it can perform
+   * @detail The ros::init() function needs to see argc and argv so that it can perform
    * any ROS arguments and name remapping that were provided at the command line.
    * For programmatic remappings you can use a different version of init() which takes
    * remappings directly, but for most command-line programs, passing argc and argv is
@@ -49,16 +55,21 @@ int main(int argc, char **argv) {
   ros::init(argc, argv, "talker");
 
   /**
-   * NodeHandle is the main access point to communications with the ROS system.
+   * @detail NodeHandle is the main access point to communications with the ROS system.
    * The first NodeHandle constructed will fully initialize this node, and the last
    * NodeHandle destructed will close down the node.
    */
   ros::NodeHandle n;
 
-  ros::ServiceServer service = n.advertiseService("add_two_strings", concatString);
+  /**
+   * @detail Inititializing the ROS service creted earlier
+   */
+
+  ros::ServiceServer service = n.advertiseService("add_two_strings",
+    concatString);
 
   /**
-   * The advertise() function is how you tell ROS that you want to
+   * @detail The advertise() function is how you tell ROS that you want to
    * publish on a given topic name. This invokes a call to the ROS
    * master node, which keeps a registry of who is publishing and who
    * is subscribing. After this advertise() call is made, the master
@@ -77,26 +88,25 @@ int main(int argc, char **argv) {
   ros::Publisher chatter_pub = n.advertise<std_msgs::String>("chatter", 1000);
 
   int rate{};
-  std::cout<<"Enter rate"<<std::endl;
+  std::cout << "Enter rate" << std::endl;
   std::cin >> rate;
   if (rate <= 0) {
     ROS_FATAL_STREAM("No publisher rate given. Setting default");
-    rate =10;
-  }
-  else {
+    rate = 10;
+  } else {
     ROS_DEBUG_STREAM("Rate set to given value");
   }
 
   ros::Rate loop_rate(10);
 
   /**
-   * A count of how many messages we have sent. This is used to create
+   * @detail A count of how many messages we have sent. This is used to create
    * a unique string for each message.
    */
   int count = 0;
   while (ros::ok()) {
     /**
-     * This is a message object. You stuff it with data, and then publish it.
+     * @detail This is a message object. You stuff it with data, and then publish it.
      */
     std_msgs::String msg;
 
@@ -107,7 +117,7 @@ int main(int argc, char **argv) {
     ROS_INFO_STREAM(msg.data.c_str());
 
     /**
-     * The publish() function is how you send messages. The parameter
+     * @detail The publish() function is how you send messages. The parameter
      * is the message object. The type of this object must agree with the type
      * given as a template parameter to the advertise<>() call, as was done
      * in the constructor above.
