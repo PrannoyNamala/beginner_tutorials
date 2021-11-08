@@ -21,6 +21,11 @@
 #include "beginner_tutorials/ConcatStrings.h"
 
 bool concatString(beginner_tutorials::ConcatStrings::Request  &req, beginner_tutorials::ConcatStrings::Response &res) {
+  if (req.aStr.empty() or req.bStr.empty()) {
+    ROS_ERROR_STREAM("Missing input strings");
+    return false;
+  }
+  ROS_WARN_STREAM("Now running string add service");
   res.opStr = req.aStr + req.bStr;
   ROS_INFO_STREAM("Input Strings are " + req.aStr + " and " + req.bStr);
   ROS_INFO_STREAM("Stream Output will be "+res.opStr);
@@ -71,6 +76,17 @@ int main(int argc, char **argv) {
    */
   ros::Publisher chatter_pub = n.advertise<std_msgs::String>("chatter", 1000);
 
+  int rate{};
+  std::cout<<"Enter rate"<<std::endl;
+  std::cin>>rate;
+  if (rate <= 0) {
+    ROS_FATAL_STREAM("No publisher rate given. Setting default");
+    rate =10;
+  }
+  else {
+    ROS_DEBUG_STREAM("Rate set to given value");
+  }
+
   ros::Rate loop_rate(10);
 
   /**
@@ -88,7 +104,7 @@ int main(int argc, char **argv) {
     ss << "Go Terps!! PN" << count;
     msg.data = ss.str();
 
-    ROS_INFO("%s", msg.data.c_str());
+    ROS_INFO_STREAM(msg.data.c_str());
 
     /**
      * The publish() function is how you send messages. The parameter
