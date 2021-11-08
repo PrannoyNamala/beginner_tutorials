@@ -18,6 +18,7 @@ add_message_files(
 add_service_files(
   FILES
   AddTwoInts.srv
+  ConcatStrings.srv
 )
 
 ## Generate added messages and services

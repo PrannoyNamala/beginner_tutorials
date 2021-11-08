@@ -17,6 +17,15 @@
 #include "ros/ros.h"
 // cppcheck-suppress missingInclude
 #include "std_msgs/String.h"
+// cppcheck-suppress missingInclude
+#include "beginner_tutorials/ConcatStrings.h"
+
+bool concatString(beginner_tutorials::ConcatStrings::Request  &req, beginner_tutorials::ConcatStrings::Response &res) {
+  res.opStr = req.aStr + req.bStr;
+  ROS_INFO_STREAM("Input Strings are " + req.aStr + " and " + req.bStr);
+  ROS_INFO_STREAM("Stream Output will be "+res.opStr);
+  return true;
+}
 
 /**
  * This tutorial demonstrates simple sending of messages over the ROS system.
@@ -40,6 +49,8 @@ int main(int argc, char **argv) {
    * NodeHandle destructed will close down the node.
    */
   ros::NodeHandle n;
+
+  ros::ServiceServer service = n.advertiseService("add_two_strings", concatString);
 
   /**
    * The advertise() function is how you tell ROS that you want to
