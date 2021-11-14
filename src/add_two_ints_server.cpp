@@ -22,8 +22,8 @@
 bool add(beginner_tutorials::AddTwoInts::Request  &req,
   beginner_tutorials::AddTwoInts::Response &res) {
   res.sum = req.a + req.b;
-  ROS_INFO_STREAM("request: x=%ld, y=%ld", (int)req.a, (int)req.b);
-  ROS_INFO_STREAM("sending back response: [%ld]", (int)res.sum);
+  ROS_INFO("request: x=%ld, y=%ld", (int)req.a, (int)req.b);
+  ROS_INFO("sending back response: [%ld]", (int)res.sum);
   return true;
 }
 

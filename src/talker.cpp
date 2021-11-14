@@ -19,6 +19,8 @@
 #include "std_msgs/String.h"
 // cppcheck-suppress missingInclude
 #include "beginner_tutorials/ConcatStrings.h"
+// cppcheck-suppress missingInclude
+#include <tf/transform_broadcaster.h>
 
 
 /**
@@ -61,6 +63,9 @@ int main(int argc, char **argv) {
    */
   ros::NodeHandle n;
 
+  tf::TransformBroadcaster br;  // frame transform broadcaster
+  tf::Transform transform;  // frame transform handler
+
   /**
    * @detail Inititializing the ROS service creted earlier
    */
@@ -87,9 +92,8 @@ int main(int argc, char **argv) {
    */
   ros::Publisher chatter_pub = n.advertise<std_msgs::String>("chatter", 1000);
 
-  int rate{};
-  std::cout << "Enter rate" << std::endl;
-  std::cin >> rate;
+  int rate = std::atoi(argv[1]);;
+  
   if (rate <= 0) {
     ROS_FATAL_STREAM("No publisher rate given. Setting default");
     rate = 10;
@@ -97,7 +101,7 @@ int main(int argc, char **argv) {
     ROS_DEBUG_STREAM("Rate set to given value");
   }
 
-  ros::Rate loop_rate(10);
+  ros::Rate loop_rate(rate);
 
   /**
    * @detail A count of how many messages we have sent. This is used to create
@@ -123,6 +127,11 @@ int main(int argc, char **argv) {
      * in the constructor above.
      */
     chatter_pub.publish(msg);
+
+    transform.setOrigin(tf::Vector3(1.0, 5.0, 7.0));
+    transform.setRotation(tf::Quaternion(0.3, 0.9, 0.11, 1));
+    br.sendTransform(tf::StampedTransform(transform,
+    ros::Time::now(), "world", "talk"));
 
     ros::spinOnce();
 

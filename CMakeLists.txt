@@ -8,6 +8,7 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   genmsg
   message_generation
+  tf
 )
 
 add_message_files(
@@ -47,3 +48,6 @@ add_dependencies(add_two_ints_server beginner_tutorials_gencpp)
 add_executable(add_two_ints_client src/add_two_ints_client.cpp)
 target_link_libraries(add_two_ints_client ${catkin_LIBRARIES})
 add_dependencies(add_two_ints_client beginner_tutorials_gencpp)
+
+add_executable(tf_broadcaster src/tf_broadcaster.cpp)
+target_link_libraries(tf_broadcaster ${catkin_LIBRARIES})

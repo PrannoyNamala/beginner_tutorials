@@ -42,7 +42,7 @@ int main(int argc, char **argv) {
   srv.request.a = atoll(argv[1]);
   srv.request.b = atoll(argv[2]);
   if (client.call(srv)) {
-    ROS_INFO_STREAM("Sum: %ld", (int)srv.response.sum);
+    ROS_INFO("Sum: %ld", (int)srv.response.sum);
   } else {
     ROS_FATAL_STREAM("Failed to call service add_two_ints");
     return 1;

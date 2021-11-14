@@ -1,7 +1,9 @@
 <launch>
   <arg name = "rate" default = "10"/>
-  <node pkg="beginner_tutorials" type="talker" name="talker1"/>
-  <node pkg="beginner_tutorials" type="listener" name="listener1"/>
+  <arg name = "a" default = "10"/>
+  <arg name = "b" default = "10"/>
+  <node pkg="beginner_tutorials" type="talker" name="talker1" output="screen" args = "$(arg rate)"/>
+  <node pkg="beginner_tutorials" type="listener" name="listener1" output="screen" args = "$(arg rate)"/>
 
   <node pkg="beginner_tutorials" type="add_two_ints_server" name="add_server"/>
   <node pkg="beginner_tutorials" type="add_two_ints_client" name="add_client" args="$(arg a) $(arg b)"/>  
