@@ -2,10 +2,10 @@ COMMAND : cppcheck --enable=all --std=c++11 --check-config --inline-suppr talker
 
 
 Checking add_two_ints_client.cpp ...
-1/4 files checked 15% done
+1/4 files checked 14% done
 Checking add_two_ints_server.cpp ...
-2/4 files checked 30% done
+2/4 files checked 29% done
 Checking listener.cpp ...
-3/4 files checked 57% done
+3/4 files checked 54% done
 Checking talker.cpp ...
 4/4 files checked 100% done

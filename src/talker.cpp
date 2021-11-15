@@ -20,8 +20,7 @@
 // cppcheck-suppress missingInclude
 #include "beginner_tutorials/ConcatStrings.h"
 // cppcheck-suppress missingInclude
-#include <tf/transform_broadcaster.h>
-
+#include "tf/transform_broadcaster.h"
 
 /**
  * 
@@ -93,7 +92,7 @@ int main(int argc, char **argv) {
   ros::Publisher chatter_pub = n.advertise<std_msgs::String>("chatter", 1000);
 
   int rate = std::atoi(argv[1]);;
-  
+
   if (rate <= 0) {
     ROS_FATAL_STREAM("No publisher rate given. Setting default");
     rate = 10;
@@ -128,6 +127,9 @@ int main(int argc, char **argv) {
      */
     chatter_pub.publish(msg);
 
+    /**
+     * @detail The process here is to set a transform and broadcast it
+     */
     transform.setOrigin(tf::Vector3(1.0, 5.0, 7.0));
     transform.setRotation(tf::Quaternion(0.3, 0.9, 0.11, 1));
     br.sendTransform(tf::StampedTransform(transform,
