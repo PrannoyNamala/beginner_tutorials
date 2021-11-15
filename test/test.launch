@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name = "rate" default = "10"/> 
+
+  <node pkg="beginner_tutorials" type="talker" name="talker1" args = "$(arg rate)"/>
+  <node pkg="beginner_tutorials" type="listener" name="listener1" args = "$(arg rate)"/>
+  <node pkg="beginner_tutorials" type="add_two_ints_server" name="add_server"/>
+  <test pkg="beginner_tutorials" test-name="sample_test" type="tutorial_test"/>
+</launch>
+
+

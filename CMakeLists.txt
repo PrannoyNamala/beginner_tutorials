@@ -51,3 +51,11 @@ add_dependencies(add_two_ints_client beginner_tutorials_gencpp)
 
 add_executable(tf_broadcaster src/tf_broadcaster.cpp)
 target_link_libraries(tf_broadcaster ${catkin_LIBRARIES})
+
+if(CATKIN_ENABLE_TESTING)
+  find_package(rostest REQUIRED)
+	
+  add_rostest_gtest(tutorial_test test/test.launch test/all_tests.cpp)
+
+  target_link_libraries(tutorial_test ${catkin_LIBRARIES})
+endif()
